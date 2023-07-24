@@ -1,25 +1,54 @@
 <script>
+  import TableInput from "./table-input.svelte";
+  import { get } from "svelte/store";
+  import { balanceValue } from "./balance.js";
 
-  const balance = "200"; //We handle this later.
+  // Initialize initialBalance with the value of balanceValue from the store
+  let initialBalance = get(balanceValue);
 
-
-  const jsonData = [
+  let jsonData = [
     {
-      "Date": "13/01/2023",
-      "Amount": 200,
-      "Description": "Rent Payment",
-      "Type": "Income",
-      "Balance": balance,
+      Date: "13/01/2023",
+      Amount: 200,
+      Description: "Rent Payment",
+      Type: "Income",
+      Balance: 200,
     },
     {
-      "date": "14/01/2023",
-      "amount": 200,
-      "description": "Rent Expense",
-      "type": "Expense",
-      "balance": balance
-    }
+      Date: "14/01/2023",
+      Amount: 200,
+      Description: "Rent Expense",
+      Type: "Expense",
+      Balance: 200,
+    },
   ];
+
+  let currentBalance = initialBalance;
+
+  $: {
+    currentBalance = initialBalance;
+    for (const item of jsonData) {
+      if (item.Type === "Income") {
+        currentBalance += item.Amount;
+      } else if (item.Type === "Expense") {
+        currentBalance -= item.Amount;
+      }
+    }
+  }
+
+  function handleAddItem(event) {
+    jsonData = [...jsonData, event.detail];
+
+    // Update the currentBalance when a new item is added
+    if (event.detail.Type === "Income") {
+      currentBalance += event.detail.Amount;
+    } else if (event.detail.Type === "Expense") {
+      currentBalance -= event.detail.Amount;
+    }
+  }
 </script>
+
+<TableInput on:add={handleAddItem} />
 
 <table>
   <thead>
@@ -45,15 +74,16 @@
     width: fit-content;
     background-color: white;
     border-collapse: collapse;
-    border: solid black .1rem;
+    border: solid black 0.1rem;
     margin: auto;
   }
   tr {
-    border: solid black .1rem;
+    border: solid black 0.1rem;
   }
-  td, th {
-    border: solid black .1rem;
-    padding: .5rem;
+  td,
+  th {
+    border: solid black 0.1rem;
+    padding: 0.5rem;
   }
   #value {
     width: 10rem;

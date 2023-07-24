@@ -1,11 +1,22 @@
-<div class="balance-container">
+<script>
+    import { balanceValue } from './balance.js';
+  
+    // Create a local variable to store the input value
+    let inputValue = $balanceValue;
+  
+    // Update the balanceValue whenever the inputValue changes
+    $: balanceValue.set(parseFloat(inputValue));
+  </script>
+  
+  <div class="balance-container">
     <div class="input-container">
-        <input type="text" id="input" placeholder="$2000">
-        <input type="date" id="first-date">
-        <input type="date" id="second-date">
+      <!-- Bind the input value to the inputValue variable -->
+      <input type="text" id="input" placeholder="$2000" bind:value={inputValue}>
+      <input type="date" id="first-date">
+      <input type="date" id="second-date">
     </div>
-    <p>Error Code Here</p>
-</div>
+    <p>Error Code Implementation [Here]</p>
+  </div>
 
 <style>
     .balance-container {

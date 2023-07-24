@@ -8,7 +8,6 @@
 <main>
 	<Header />
 	<Balance />
-	<TableInput />
 	<Table />
 </main>
 
