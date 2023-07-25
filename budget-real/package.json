@@ -19,10 +19,6 @@
     "svelte": "^3.55.0"
   },
   "dependencies": {
-    "fusioncharts": "^3.20.0",
-    "fusiongrid": "^1.1.1",
-    "sirv-cli": "^2.0.0",
-    "svelte-fusioncharts": "^1.0.0",
-    "svelte-table": "^0.6.1"
+    "sirv-cli": "^2.0.0"
   }
 }
