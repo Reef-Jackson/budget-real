@@ -1,3 +1,4 @@
+<!-- App.svelte -->
 <script>
 	import { balance } from "./components/balance.js";
 	import Table from "./components/table.svelte";

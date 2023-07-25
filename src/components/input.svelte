@@ -1,3 +1,4 @@
+<!-- Input.svelte -->
 <script>
     export let addEntry;
     import { balance } from "./balance";
@@ -22,6 +23,7 @@
   </script>
   
   <div class="container">
+      <!-- Your form inputs here (same as before) -->
       <input type="date" name="date" bind:value={date} />
       <input
           type="text"
@@ -36,11 +38,13 @@
           bind:value={desc}
       />
   
+      <!-- Use bind:value to update the type variable -->
       <select name="type" id="type" bind:value={type}>
           <option value="Income">Income</option>
           <option value="Expense">Expense</option>
       </select>
   
+      <!-- Add the on:click event handler to call handleClick -->
       <button type="button" on:click={handleClick}>Add</button>
   </div>
   
