@@ -1,16 +1,26 @@
-<div class="container">
-    <input type="text" id="balance" placeholder="balance">
-    <button>Add</button>
-    <p>Balance here.</p>
-</div>
+<script>
+    import { balance } from "./balance.js";
 
+    let inputText = "";
+
+    function handleButtonClick() {
+        const amount = parseFloat(inputText);
+        balance.set(amount);
+    }
+</script>
+
+<div class="container">
+    <input type="text" id="balance" bind:value={inputText} placeholder="balance" />
+    <button type="button" on:click={handleButtonClick}>Add</button>
+    <p>Balance: ${$balance}</p>
+</div>
 
 <style>
     .container {
         display: flex;
-        gap: .4rem;
+        gap: 0.4rem;
         justify-content: center;
-        padding-bottom: 1rem;
+        padding-bottom: 2rem;
         margin-bottom: 0;
     }
     .container #balance {
